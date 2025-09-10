@@ -1,0 +1,6 @@
+//login data
+email:lenard@gmail.com
+password:asdfgh
+
+email:prome@gmail.com
+password:12345
