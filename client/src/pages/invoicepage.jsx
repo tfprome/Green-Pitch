@@ -13,7 +13,7 @@ const InvoicePage = () => {
     const fetchInvoice = async () => {
       try {
         const token = sessionStorage.getItem("token");
-        const res = await axios.get(`http://localhost:5000/invoice/${id}`, {
+        const res = await axios.get(`https://green-pitch.vercel.app//invoice/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setInvoice(res.data.invoice);
@@ -30,7 +30,7 @@ const InvoicePage = () => {
     try {
       const token = sessionStorage.getItem("token");
       const res = await axios.post(
-        `http://localhost:5000/payment/initiate/${id}`,
+        `https://green-pitch.vercel.app//payment/initiate/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

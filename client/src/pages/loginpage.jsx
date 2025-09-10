@@ -17,7 +17,7 @@ const Login = () => {
     //console.log("Login Data:", form);
     const{email,password}=form
     try{
-      const res=await axios.post('http://localhost:5000/login',{email,password})
+      const res=await axios.post('https://green-pitch.vercel.app//login',{email,password})
     if(res.status==200)
     {
       const token = res.data.token; 

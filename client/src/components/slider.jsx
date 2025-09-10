@@ -8,7 +8,7 @@ const Slider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetch = await axios.get('http://localhost:5000/slider');
+        const fetch = await axios.get('https://green-pitch.vercel.app//slider');
         setSlider(fetch.data);
       } catch (e) {
         console.error('Slider fetching failed', e);
@@ -43,14 +43,14 @@ const Slider = () => {
 
   const currentSlide = sliders[currentIndex];
 
-  //console.log(`Image URL: http://localhost:5000/${currentSlide.image}`);
+  //console.log(`Image URL: https://green-pitch.vercel.app//${currentSlide.image}`);
   //console.log(sliders[0],sliders[1],sliders[2])
 
   return (
     <div className="relative z-10 w-full h-[500px] max-w-screen">
       {/* Background Image */}
       <img
-          src={`http://localhost:5000/${currentSlide.image}`}
+          src={`https://green-pitch.vercel.app//${currentSlide.image}`}
            alt={currentSlide.headline}
           className="absolute inset-0 bg-conatin bg-center bg-no-repeat transition-all duration-500 z-0 h-full w-full"
          />

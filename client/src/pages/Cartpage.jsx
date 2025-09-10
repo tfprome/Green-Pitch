@@ -13,7 +13,7 @@ const CartPage = () => {
             try {
                 const token = sessionStorage.getItem("token");
                 if (!token) return;
-                const res = await axios.get("http://localhost:5000/readcart", {
+                const res = await axios.get("https://green-pitch.vercel.app//readcart", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setCartItems(res.data.data);
@@ -28,7 +28,7 @@ const CartPage = () => {
         try {
             const token = sessionStorage.getItem("token");
             const res = await axios.delete(
-                `http://localhost:5000/removecart/${id}`,
+                `https://green-pitch.vercel.app//removecart/${id}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -44,7 +44,7 @@ const CartPage = () => {
     const handleBuyNow =async (id) => {
         try{
             const token=sessionStorage.getItem('token')
-            const res=await axios.post(`http://localhost:5000/createinvoice/${id}`,{},
+            const res=await axios.post(`https://green-pitch.vercel.app//createinvoice/${id}`,{},
                 {headers:{Authorization:`Bearer ${token}`}})
             if(res.status==200)
             {
@@ -106,7 +106,7 @@ const CartPage = () => {
 
                             {/* Right side: product image */}
                             <img
-                                src={`http://localhost:5000${item.product.brandimg}`}
+                                src={`https://green-pitch.vercel.app/${item.product.brandimg}`}
                                 alt={item.product.brandname}
                                 className="w-32 h-32 object-cover rounded-lg"
                             />

@@ -29,7 +29,7 @@ const Signup = () => {
         try {
             const hashedpassword=await bcrypt.hash(form.password,10)
             const {name,email}=form
-            const res = await axios.post('http://localhost:5000/signup', {name,email,password:hashedpassword})
+            const res = await axios.post('https://green-pitch.vercel.app//signup', {name,email,password:hashedpassword})
             if (res.status === 200)
                 {   
                     navigate('/login')

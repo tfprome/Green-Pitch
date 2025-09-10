@@ -31,7 +31,7 @@ const SearchBar = () => {
     }
 
     try {
-      const res = await axios.get(`http://localhost:5000/productlistbykeyword/${value}`);
+      const res = await axios.get(`https://green-pitch.vercel.app//productlistbykeyword/${value}`);
       setResults(res.data.data);
       setShowDropdown(true);
     } catch (err) {
@@ -68,7 +68,7 @@ const SearchBar = () => {
               </div>
               {product.brand?.brandimg && (
                 <img
-                  src={`http://localhost:5000${product.brandimg}`}
+                  src={`https://green-pitch.vercel.app/${product.brandimg}`}
                   alt={product.title}
                   className="w-12 h-12 object-cover rounded"
                 />

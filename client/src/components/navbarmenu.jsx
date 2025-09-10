@@ -10,9 +10,9 @@ const NavbarMenu = () => {
     const fetchData = async () => {
       try {
         const [teamsRes, brandsRes, categoriesRes] = await Promise.all([
-          axios.get('http://localhost:5000/teamname'),
-          axios.get('http://localhost:5000/brandname'),
-          axios.get('http://localhost:5000/categoryname'),
+          axios.get('https://green-pitch.vercel.app//teamname'),
+          axios.get('https://green-pitch.vercel.app//brandname'),
+          axios.get('https://green-pitch.vercel.app//categoryname'),
         ]);
 
         console.log("Teams:", teamsRes.data);
