@@ -11,7 +11,7 @@ const Wishpage = (props) => {
           try {
             const token = sessionStorage.getItem('token');
             if (!token) return;
-            const res = await axios.get('https://green-pitch-server-production.up.railway.app//readwish', {
+            const res = await axios.get('https://green-pitch-server-production.up.railway.app/readwish', {
               headers: { Authorization: `Bearer ${token}` },
             });
             setWishItems(res.data.data);
@@ -25,7 +25,7 @@ const Wishpage = (props) => {
       const removeFromWish = async (id) => {
         try {
           const token = sessionStorage.getItem("token");
-          const res=await axios.delete(`https://green-pitch-server-production.up.railway.app//removewish/${id}`, {
+          const res=await axios.delete(`https://green-pitch-server-production.up.railway.app/removewish/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if(res.status==200)
@@ -64,7 +64,7 @@ const Wishpage = (props) => {
     
                 {/* Right side: product image */}
                 <img
-                  src={`https://green-pitch-server-production.up.railway.app/${item.product.brandimg}`}
+                  src={`https://green-pitch-server-production.up.railway.app${item.product.brandimg}`}
                   alt={item.product.brandname}
                   className="w-32 h-32 object-cover rounded-lg"
                 />

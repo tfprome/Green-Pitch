@@ -9,7 +9,7 @@ const BrandShow = (props) => {
      useEffect(()=>{
         const fetch=async()=>{
             try{
-                const brands=await axios.get('https://green-pitch-server-production.up.railway.app//brand')
+                const brands=await axios.get('https://green-pitch-server-production.up.railway.app/brand')
                 setBranddata(brands.data)
                 //console.log(brands.data)
             }
@@ -23,7 +23,7 @@ const BrandShow = (props) => {
     //  if(branddata.length==0)
     //     console.log('empty')
     // else
-    //   console.log(`https://green-pitch-server-production.up.railway.app/${branddata[0].brandimg}`)
+    //   console.log(`https://green-pitch-server-production.up.railway.app${branddata[0].brandimg}`)
     
 
 
@@ -37,7 +37,7 @@ const BrandShow = (props) => {
                  <Link to={`/productlistbybrand/${item._id}`}>
                         <div key={item._id} className='shadow-md rounded-md  m-5 w-40 h-40 flex flex-col items-center cursor-pointer transition-transform ease-in-out
                             duration-300 hover:shadow-xl hover:scale-110  hover:bg-gray-300'>
-                            <img src={`https://green-pitch-server-production.up.railway.app/${item.brandimg}`} alt={item.brandname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
+                            <img src={`https://green-pitch-server-production.up.railway.app${item.brandimg}`} alt={item.brandname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
                             <div className='text-center mt-3 font-semibold'>{item.brandname}</div>
                         </div>
                  </Link>
