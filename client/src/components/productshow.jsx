@@ -12,7 +12,7 @@ const ProductShow = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://green-pitch.vercel.app//getproducts"); 
+        const res = await axios.get("https://green-pitch-server-production.up.railway.app//getproducts"); 
         setProducts(res.data);
       } catch (e) {
         console.error("Failed to fetch products:", e);
@@ -47,7 +47,7 @@ const ProductShow = () => {
            <Link to={`/productdetails/${item._id}`}>
            <div className="bg-white shadow-md rounded-xl overflow-hidden hover:scale-105 hover:bg-gray-200 transform transition flex flex-col h-full">
               <img
-                src={`https://green-pitch.vercel.app/${item.brandimg}`}
+                src={`https://green-pitch-server-production.up.railway.app/${item.brandimg}`}
                 alt={item.brandname}
                 className="w-full h-48 object-contain"
               />

@@ -26,9 +26,9 @@ const Navbar = () => {
     const fetchData = async () => {
       try {
         const [teamsRes, brandsRes, categoriesRes] = await Promise.all([
-          axios.get("https://green-pitch.vercel.app//teamname"),
-          axios.get("https://green-pitch.vercel.app//brandname"),
-          axios.get("https://green-pitch.vercel.app//categoryname"),
+          axios.get("https://green-pitch-server-production.up.railway.app//teamname"),
+          axios.get("https://green-pitch-server-production.up.railway.app//brandname"),
+          axios.get("https://green-pitch-server-production.up.railway.app//categoryname"),
         ]);
         setTeams(teamsRes.data.data || []);
         setBrands(brandsRes.data.data || []);
