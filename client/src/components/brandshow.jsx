@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import Brandskeleton from './skeleton/brands-skeleton';
 
 const BrandShow = (props) => {
     //const [formdata,setFormdata]=useState({brandname:'',brandimg:''})
     const [branddata,setBranddata]=useState([])
+    const [loading,setLoading]=useState(true)
 
      useEffect(()=>{
         const fetch=async()=>{
@@ -12,9 +14,11 @@ const BrandShow = (props) => {
                 const brands=await axios.get('https://green-pitch-server-production.up.railway.app/brand')
                 setBranddata(brands.data)
                 //console.log(brands.data)
+                setLoading(false)
             }
             catch(e){
                 console.error('brand data failed',e)
+                setLoading(false)
             }
         }
         fetch();   
@@ -24,8 +28,11 @@ const BrandShow = (props) => {
     //     console.log('empty')
     // else
     //   console.log(`https://green-pitch-server-production.up.railway.app${branddata[0].brandimg}`)
-    
+    if (loading || !branddata.length) {
+        return <Brandskeleton />;
+    }
 
+    
 
 
     return (

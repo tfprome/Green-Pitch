@@ -67,15 +67,15 @@ const Navbar = () => {
           <div className="hidden lg:flex gap-8">
 
             <div className="relative group">
-              <h1 className="font-semibold cursor-pointer border-b-2 border-transparent group-hover:border-gray-700 transition">
+              <h1 className="font-semibold border-b-2 cursor-context-menu border-transparent group-hover:border-gray-700 transition">
                 Teams
               </h1>
-              <div className="absolute hidden group-hover:grid bg-white shadow-md rounded-md mt-5 p-4 z-50
+              <div className="absolute hidden  group-hover:grid bg-white shadow-md rounded-md mt-5 p-4 z-50
                   grid-cols-3 gap-4 min-w-max">
                 {teamname.map((team) => (
                   <p
                     key={team}
-                    className="px-2 py-1  hover:bg-gray-100 cursor-pointer whitespace-nowrap"
+                    className="px-2 py-1  hover:bg-gray-100 whitespace-nowrap"
                   >
                     {team}
                   </p>
@@ -85,7 +85,7 @@ const Navbar = () => {
 
 
             <div className="relative group">
-              <h1 className="font-semibold cursor-pointer border-b-2 border-transparent group-hover:border-gray-700 transition">
+              <h1 className="font-semibold border-b-2 cursor-context-menu border-transparent group-hover:border-gray-700 transition">
                 Categories
               </h1>
               <div className="absolute hidden group-hover:grid bg-white shadow-md rounded-md mt-5 p-4 z-50
@@ -103,7 +103,7 @@ const Navbar = () => {
 
             {/* Brands */}
             <div className="relative group">
-              <h1 className="font-semibold cursor-pointer border-b-2 border-transparent group-hover:border-gray-700 transition">
+              <h1 className="font-semibold border-b-2 cursor-context-menu border-transparent group-hover:border-gray-700 transition">
                 Brands
               </h1>
               <div className="absolute hidden group-hover:grid bg-white shadow-md rounded-md mt-5 p-4 z-50
@@ -124,7 +124,7 @@ const Navbar = () => {
 
         <div className="flex-1 flex justify-center">
           <h1
-            className="font-extrabold text-green-700 cursor-pointer text-xl lg:text-4xl lg:ml-30"
+            className="font-extrabold text-green-700 cursor-context-menu text-xl lg:text-4xl lg:ml-30"
             onClick={() => navigate("/home")}
           >
             Green Pitch
