@@ -16,12 +16,12 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Shop</h3>
+          <h3 className="text-lg font-semibold text-white mb-3">Popular Sections</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="/pizzas" className="hover:text-white">Pizzas</a></li>
-            <li><a href="/pastas" className="hover:text-white">Pastas</a></li>
-            <li><a href="/burgers" className="hover:text-white">Burgers</a></li>
-            <li><a href="/all-products" className="hover:text-white">All Products</a></li>
+            <li><a href="/productlistbybrand/689ade5d865b0ab90a95a205" className="hover:text-white">Adidas</a></li>
+            <li><a href="/productlistbybrand/689adf13865b0ab90a95a209" className="hover:text-white">New Balance</a></li>
+            <li><a href="/productlistbyteam/68a6b05006ac770502cbd3e6" className="hover:text-white">Club Jerserys</a></li>
+            <li><a href="/productlistbyteam/68a6ad0106ac770502cbd3e4" className="hover:text-white">Boots</a></li>
           </ul>
         </div>
 

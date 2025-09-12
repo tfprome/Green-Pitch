@@ -28,9 +28,9 @@ const BrandShow = (props) => {
     //     console.log('empty')
     // else
     //   console.log(`https://green-pitch-server-production.up.railway.app${branddata[0].brandimg}`)
-    if (loading || !branddata.length) {
-        return <Brandskeleton />;
-    }
+    // if (loading || !branddata.length) {
+    //     return <Brandskeleton />;
+    // }
 
     
 

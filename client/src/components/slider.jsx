@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Slider = () => {
   const [sliders, setSlider] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate=useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +45,14 @@ const Slider = () => {
 
   const currentSlide = sliders[currentIndex];
 
+  const handleclick=()=>{
+    console.log('button clicked')
+    if(currentSlide.buttondata==='Take a look')
+        navigate('/productlistbyteam/68a6b05006ac770502cbd3e6')
+    if(currentSlide.buttondata==='Suit yourself')
+      navigate('/productlistbyteam/68a6ad0106ac770502cbd3e4')
+  }
+
   //console.log(`Image URL: https://green-pitch-server-production.up.railway.app/${currentSlide.image}`);
   //console.log(sliders[0],sliders[1],sliders[2])
 
@@ -64,7 +74,7 @@ const Slider = () => {
       <div className="relative z-10 flex flex-col justify-center items-start h-full max-w-5xl mx-auto px-8 text-white">
         <h1 className="text-4xl font-bold mb-2">{currentSlide.headline}</h1>
         <p className="text-lg mb-4">{currentSlide.message}</p>
-        <button className="px-6 py-2 bg-white text-black font-medium rounded hover:bg-gray-200 transition">
+        <button onClick={handleclick} className="px-6 py-2 bg-white text-black font-medium rounded hover:bg-gray-200 transition">
           {currentSlide.buttondata}
         </button>
       </div>

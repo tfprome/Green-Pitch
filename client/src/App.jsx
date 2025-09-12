@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Home from './pages/Homepage.jsx';
 import Listbybrand from './pages/listbybrandpage.jsx';
@@ -11,11 +10,6 @@ import Wishpage from './pages/wishpage.jsx';
 import SearchBar from './components/searchbar.jsx';
 import NavbarMenu from './components/navbarmenu.jsx';
 import InvoicePage from './pages/invoicepage.jsx';
-import Brandskeleton from './components/skeleton/brands-skeleton.jsx';
-import Sliderskeleton from './components/skeleton/slider-skeleton.jsx';
-import Categoryskeleton from './components/skeleton/categories-skeleton';
-import DetailsSkeleton from './components/skeleton/details-skeleton';
-import Productskeleton from './components/skeleton/products-skeleton.jsx';
 
 
 
@@ -39,7 +33,6 @@ function App() {
               <Route path='/search' element={<SearchBar/>}></Route>
               <Route path='/navbarmenu' element={<NavbarMenu/>}></Route>
               <Route path='/invoicepage/:id' element={<InvoicePage/>}></Route>
-              <Route path='/brandskeleton' element={<Productskeleton/>}></Route>
            </Routes>
         </BrowserRouter>
       </div>
