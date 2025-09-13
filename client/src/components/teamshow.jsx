@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 const Categoryshow = (props) => {
     //const [formdata,setFormdata]=useState({brandname:'',brandimg:''})
@@ -33,13 +34,16 @@ const Categoryshow = (props) => {
        <div>
           <div className='text-4xl font-bold text-center mt-10'>Featured Categories</div>
            <div className='flex flex-wrap mt-9 p-5 justify-center' style={{overflowX:'hidden'}}>
-           {categorydata.map((item)=>(
+           {categorydata.map((item,index)=>(
              <Link to={`/productlistbyteam/${item._id}`}>
-                  <div key={item._id} className='shadow-md rounded-md  m-5 w-40 h-40 flex flex-col items-center cursor-pointer transition-transform ease-in-out
-                            duration-300 hover:shadow-xl hover:scale-110  hover:bg-gray-300'>
+                  <motion.div key={item._id} className='shadow-md rounded-md  m-5 w-40 h-40 flex flex-col items-center cursor-pointer transition-transform ease-in-out
+                            duration-300 hover:shadow-xl hover:scale-110  hover:bg-gray-300'
+                             initial={{opacity:0,x:20}}
+                            animate={{opacity:1,x:0}}
+                            transition={{duration:0.5,delay:index*0.1}}>
                         <img src={`https://green-pitch-server-production.up.railway.app${item.categorylogo}`} alt={item.categoryname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
                         <div className='text-center mt-3 font-semibold'>{item.categoryname}</div>
-                  </div>
+                  </motion.div>
              </Link>
              
           ))}
