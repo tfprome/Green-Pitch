@@ -5,6 +5,7 @@ import Navbar from '../components/navbar';
 import { Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
+import { toast } from 'react-toastify';
 
 const ProductDetails = (props) => {
     const { id } = useParams();
@@ -45,7 +46,7 @@ const ProductDetails = (props) => {
                     {
                         headers: { Authorization: `Bearer ${Token}` },
                     })
-                alert('added to cart')
+                toast.success('added to cart')
             }
             catch (e) {
                 console.error('couldnt send addcart data to BE', e)
@@ -53,8 +54,10 @@ const ProductDetails = (props) => {
         }
 
         if (!Token) {
-            alert('Login to our site')
-            navigate('/login')
+            toast.error('Login to our site',{autoClose:1000,
+                onClose:()=>navigate('/login')
+            })
+            
         }
     }
 
@@ -82,8 +85,10 @@ const ProductDetails = (props) => {
             const token = sessionStorage.getItem('token')
             //console.log(token)
             if (!token) {
-                alert("Log in our site")
-                navigate('/login')
+                toast.error("Log in our site",{autoClose:1000,
+                    onClose:()=>navigate('/login')
+                })
+                
             }
             if (token) {
                 const res = await axios.post(`https://green-pitch-server-production.up.railway.app/addwish/${id}`, {},
@@ -91,13 +96,13 @@ const ProductDetails = (props) => {
                         headers: { Authorization: `Bearer ${token}` }
                     }
                 )
-                alert('Added to Your Wishlist')
+                toast.success('Added to Your Wishlist')
             }
 
         }
         catch (e) {
             if (e.response && e.response.status === 400) {
-                alert("⚠️ This product is already in your wishlist");
+                toast.warn("This product is already in your wishlist");
             }
             console.error('error sending wish data', e)
         }

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {motion} from 'framer-motion'
+import Categoryskeleton from './skeleton/categories-skeleton';
 
 const Categoryshow = (props) => {
     //const [formdata,setFormdata]=useState({brandname:'',brandimg:''})
     const [categorydata,setCategorydata]=useState([])
+    const [loading,setLoading]=useState(true)
 
      useEffect(()=>{
         const fetch=async()=>{
@@ -13,6 +15,7 @@ const Categoryshow = (props) => {
                 const categories=await axios.get('https://green-pitch-server-production.up.railway.app/category')
                 setCategorydata(categories.data)
                 //console.log(teams.data)
+                setLoading(false)
             }
             catch(e){
                 console.error('category data failed',e)
@@ -32,7 +35,10 @@ const Categoryshow = (props) => {
     return (
         
        <div>
-          <div className='text-4xl font-bold text-center mt-10'>Featured Categories</div>
+          {loading?
+          <Categoryskeleton count={8}/>:
+          <div>
+            <div className='text-4xl font-bold text-center mt-10'>Featured Categories</div>
            <div className='flex flex-wrap mt-9 p-5 justify-center' style={{overflowX:'hidden'}}>
            {categorydata.map((item,index)=>(
              <Link to={`/productlistbyteam/${item._id}`}>
@@ -47,7 +53,7 @@ const Categoryshow = (props) => {
              </Link>
              
           ))}
-           </div>
+           </div></div>}
        </div>
 
     );

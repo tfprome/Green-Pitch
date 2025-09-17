@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs'
+import { toast } from "react-toastify";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Signup = () => {
         e.preventDefault();
 
         if (form.password !== form.confirmPassword) {
-            alert("Passwords do not match!");
+            toast.warn("Passwords do not match!");
             return;
         }
 
@@ -32,8 +33,7 @@ const Signup = () => {
             const res = await axios.post('https://green-pitch-server-production.up.railway.app/signup', {name,email,password:hashedpassword})
             if (res.status === 200)
                 {   
-                    navigate('/login')
-                    alert('user created')
+                    toast.success("user created",{autoClose:1000,onClose:()=>navigate('/login')})
                 }
         }
         catch (e) {

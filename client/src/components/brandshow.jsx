@@ -38,7 +38,10 @@ const BrandShow = (props) => {
 
     return (
         
-       <div className=''>
+     <div>
+        {loading?<Brandskeleton count={8}/>
+        :
+        <div className=''>
           <div className='text-4xl font-bold text-center mt-10'>Featured Brands</div>
               <motion.div className='flex flex-wrap mt-9 p-5 justify-center'
                initial="hidden"
@@ -65,7 +68,8 @@ const BrandShow = (props) => {
              
           ))}
            </motion.div>
-       </div>
+       </div>}
+     </div>
 
     );
 };

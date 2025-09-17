@@ -79,28 +79,7 @@ const Slider = () => {
         </button>
       </div>
 
-      {/* Navigation Arrows */}
-      {/* <button
-      style={{
-        backgroundColor: 'transparent',
-        border: 'none',
-        outline: 'none',
-        appearance: 'none',
-        WebkitAppearance: 'none',
-        MozAppearance: 'none',
-        boxShadow: 'none',
-      }}
-        onClick={goToPrev}
-        className="bg-transparent border-none outline-none appearance-none absolute top-1/2 left-4 transform -translate-y-1/2 z-20 text-white text-2xl  rounded-full px-3 py-1 hover:bg-opacity-70"
-      >
-        ◀
-      </button> */}
-      {/* <button
-        onClick={goToNext}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 text-white text-2xl rounded-full px-3 py-1 hover:bg-opacity-70"
-      >
-        ▶
-      </button> */}
+      
     </div>
   );
 };

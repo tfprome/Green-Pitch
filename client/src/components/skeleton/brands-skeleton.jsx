@@ -1,34 +1,33 @@
-import React from 'react';
-import ImagePlaceholder from '../../assets/image.json'
-import Lottie from 'lottie-react';
-import Skeleton from 'react-loading-skeleton';
-const Brandskeleton = () => {
-    return (
-        
-        <div className="section">
-            <div className="container">
-                <div className="row">
-                    <h1 className="headline-4 text-center my-2 p-0">Top Brands</h1>
-                    <span className="bodySmal mb-5 text-center">Explore a World of Choices Across Our Most Popular <br />Shopping Categories </span>
-                    {
-                        Array.from({length:16}).map(()=>{
-                            return(
-                                <div className="col-6 col-lg-8r text-center col-md-8r p-2">
-                                    <div className="card h-100 rounded-3 bg-white">
-                                        <div className="card-body">
-                                            <Lottie className="w-100" animationData={ImagePlaceholder} loop={true} />
-                                            <Skeleton count={1} />
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-        </div>
+import React from "react";
 
-    );
+const Brandskeleton = ({ count = 8 }) => {
+  const items = Array.from({ length: count });
+
+  return (
+    <div className="">
+      <div className="text-4xl font-bold text-center mt-10">Featured Brands</div>
+
+      {/* Mark region as loading for a11y */}
+      <div
+        className="flex flex-wrap mt-9 p-5 justify-center"
+        aria-busy="true"
+        aria-live="polite"
+      >
+        {items.map((_, i) => (
+          <div
+            key={i}
+            className="shadow-md rounded-md m-5 w-40 h-40 p-4 animate-pulse"
+          >
+            {/* Image placeholder (matches your img area ~100px) */}
+            <div className="w-full h-[100px] bg-gray-200 rounded" />
+
+            {/* Brand name line */}
+            <div className="mt-3 h-4 bg-gray-200 rounded w-3/4 mx-auto" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Brandskeleton;

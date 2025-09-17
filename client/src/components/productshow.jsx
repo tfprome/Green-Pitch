@@ -4,10 +4,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import ProductShowSkeleton from "./skeleton/products-skeleton";
 
 const ProductShow = () => {
   const [products, setProducts] = useState([]);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [loading,setLoading]=useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -16,13 +18,13 @@ const ProductShow = () => {
           "https://green-pitch-server-production.up.railway.app/getproducts"
         );
         setProducts(res.data);
+        setLoading(false)
       } catch (e) {
         console.error("Failed to fetch products:", e);
       }
     };
     fetchProducts();
 
-    // Set initial window width
     setWindowWidth(window.innerWidth);
 
     // Update on resize
@@ -31,11 +33,10 @@ const ProductShow = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Dynamically calculate slidesToShow based on window width
   const getSlidesToShow = () => {
-    if (windowWidth < 640) return 1; // mobile
-    if (windowWidth < 1024) return 2; // tablet
-    if (windowWidth < 1280) return 3; // laptop
+    if (windowWidth < 640) return 1; 
+    if (windowWidth < 1024) return 2; 
+    if (windowWidth < 1280) return 3; 
     return 4; // PC / large screens
   };
 
@@ -50,14 +51,18 @@ const ProductShow = () => {
     autoplaySpeed: 3000,
   };
 
-  // Only render Slider if windowWidth is known
-  if (windowWidth === 0) return null;
+
 
   return (
-    <div className="w-full px-2 sm:px-4 md:px-6 lg:px-10 py-6">
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
+   <div>
+    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
         Our Top Products
       </h2>
+    {loading?
+    <ProductShowSkeleton count={4}/>:
+    <div>
+       <div className="w-full px-2 sm:px-4 md:px-6 lg:px-10 py-6">
+      
       <Slider {...settings}>
         {products.slice(0, 10).map((item) => (
           <div key={item._id} className="p-2 sm:p-3">
@@ -92,7 +97,8 @@ const ProductShow = () => {
           </div>
         ))}
       </Slider>
-    </div>
+    </div></div>}
+   </div>
   );
 };
 

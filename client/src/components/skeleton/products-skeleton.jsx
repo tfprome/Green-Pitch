@@ -1,31 +1,57 @@
-import React from 'react';
-import Skeleton from 'react-loading-skeleton';
-import Lottie from 'lottie-react';
-import ImagePlaceholder from '../../assets/image.json'
+import React from "react";
 
-const Productskeleton = (props) => {
+
+// Default-exported functional component. `count` controls how many skeleton cards show.
+const ProductShowSkeleton=({ count = 8 })=> {
+    // Create an array of the requested length so we can map and render placeholders
+    const items = Array.from({ length: count });
+
+
     return (
-        
-        <div className="container">
-        <div className="row">
+        // Outer wrapper: spacing matches ProductShow and provides accessibility attrs
+        <div
+            className="w-full px-2 sm:px-4 md:px-6 lg:px-10 py-6"
+            aria-busy="true" // tells assistive tech the section is loading
+            aria-live="polite" // politely announce updates
+        >
 
-            {
-                Array.from({length:8}).map((_,i)=>{
-                    return(
-                        <div key={i} className="col-md-3 p-2 col-lg-3 col-sm-6 col-12">
-                            <div className="card shadow-sm h-100 rounded-3 bg-white">
-                                <Lottie className="w-100" animationData={ImagePlaceholder} loop={true} />
-                                <div className="card-body">
-                                    <Skeleton count={3} />
+
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {items.map((_, i) => (
+                    <div key={i} className="p-2 sm:p-3">
+                        <div className="bg-white shadow-md rounded-xl overflow-hidden animate-pulse flex flex-col h-full">
+
+
+                            {/* Image placeholder: fixed height to match ProductShow's img heights */}
+                            <div className="w-full h-36 sm:h-44 md:h-52 bg-gray-200" />
+
+
+                            {/* Card body placeholder: spacing and vertical layout like real card */}
+                            <div className="p-3 flex-1 flex flex-col justify-between">
+                                {/* Title placeholder (one-line) */}
+                                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2" />
+
+
+                                {/* Description placeholder (two-line height) */}
+                                <div className="h-10 bg-gray-200 rounded w-full mb-2" />
+
+
+                                {/* Price & rating row placeholder */}
+                                <div className="flex justify-between items-center mt-2">
+                                    <div className="h-4 bg-gray-200 rounded w-20" />
+                                    <div className="h-4 bg-gray-200 rounded w-12" />
                                 </div>
+
+
+                                {/* CTA button placeholder */}
+                                <div className="mt-3 h-8 bg-gray-200 rounded w-full" />
                             </div>
                         </div>
-                    )
-                })
-            }
+                    </div>
+                ))}
+            </div>
         </div>
-    </div>
     );
-};
-
-export default Productskeleton;
+}
+export default ProductShowSkeleton;

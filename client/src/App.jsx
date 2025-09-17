@@ -10,6 +10,7 @@ import Wishpage from './pages/wishpage.jsx';
 import SearchBar from './components/searchbar.jsx';
 import NavbarMenu from './components/navbarmenu.jsx';
 import InvoicePage from './pages/invoicepage.jsx';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -34,6 +35,7 @@ function App() {
               <Route path='/navbarmenu' element={<NavbarMenu/>}></Route>
               <Route path='/invoicepage/:id' element={<InvoicePage/>}></Route>
            </Routes>
+           <ToastContainer position='top-center' pauseOnHover={false}/>
         </BrowserRouter>
       </div>
     </>

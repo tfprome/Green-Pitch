@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const CartPage = () => {
     const navigate=useNavigate()
@@ -34,6 +35,7 @@ const CartPage = () => {
                 }
             );
             if (res.status === 200) {
+                toast.success("cart Item deleted")
                 setCartItems((prev) => prev.filter((item) => item._id !== id));
             }
         } catch (e) {
@@ -48,11 +50,10 @@ const CartPage = () => {
                 {headers:{Authorization:`Bearer ${token}`}})
             if(res.status==200)
             {
-                alert('Invoice created')
                 console.log('invoice created',res.data)
                 const invoiceID = res.data.invoice._id;
                 setCartItems(prev=>prev.filter(item=>item._id!==id))
-                navigate(`/invoicepage/${invoiceID}`)
+                toast.success('Invoice created',{autoClose:1000,onClose:()=>navigate(`/invoicepage/${invoiceID}`)}) 
             }
         }
         catch(e){

@@ -4,6 +4,7 @@ import { User, ShoppingCart, LogOut, Menu, Gift } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CartDropdown from "./Cartdropdown";
 import SearchBar from "./searchbar";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
+    toast.success("You are logged out",{autoClose:1000,pauseOnHover:false})
     sessionStorage.removeItem("token");
     setIsLoggedIn(false);
   };
@@ -163,8 +165,7 @@ const Navbar = () => {
               if (isLoggedIn) {
                 navigate("/wish");
               } else {
-                alert("Please log in to access your wishlist!");
-                navigate("/login"); // optional: redirect to login page
+                toast.warn("Please log in to access your wishlist!",{autoClose:1000,onClose:()=> navigate("/login")});
               }
             }}
           />

@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 //import bcrypt from 'bcrypt'
+import {ToastContainer,toast} from 'react-toastify'
 
 const Login = () => {
     const navigate=useNavigate();
@@ -18,19 +19,23 @@ const Login = () => {
     const{email,password}=form
     try{
       const res=await axios.post('https://green-pitch-server-production.up.railway.app/login',{email,password})
-    if(res.status==200)
+    if(res.status===200)
     {
       const token = res.data.token; 
       sessionStorage.setItem('token', token); 
       //sessionStorage.setItem('UserID',res.data.user_id)
-      alert('Login Successful');
-      navigate('/home');
-    }
-    else
-      alert(res.message)
-    }
+      toast.success(('Login Successful'),
+      {position:"top-center",
+        autoClose:1000,
+        onClose:()=>navigate('/home')
+      });
+      
+    }}
     catch(e)
-      {console.log('error while loggging in',e)}
+      { if(e.response.data){
+        toast.error(e.response.data,{position:"top-center"})
+      }
+        console.log('error while loggging in',e)}
   };
 
   return (
