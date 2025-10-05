@@ -15,7 +15,7 @@ const ProductShow = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          "https://green-pitch.vercel.app//getproducts"
+          "https://green-pitch-server-production.up.railway.app/getproducts"
         );
         setProducts(res.data);
         setLoading(false)
@@ -69,7 +69,7 @@ const ProductShow = () => {
             <Link to={`/productdetails/${item._id}`}>
               <div className="bg-white shadow-md rounded-xl overflow-hidden hover:scale-105 hover:bg-gray-100 transform transition flex flex-col h-full">
                 <img
-                  src={`https://green-pitch.vercel.app/${item.brandimg}`}
+                  src={`https://green-pitch-server-production.up.railway.app${item.brandimg}`}
                   alt={item.brandname}
                   className="w-full h-36 sm:h-44 md:h-52 object-contain bg-gray-50"
                 />
