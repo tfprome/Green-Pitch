@@ -10,7 +10,7 @@ const Slider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetch = await axios.get('https://green-pitch-server-production.up.railway.app/slider');
+        const fetch = await axios.get('https://green-pitch.onrender.com/slider');
         setSlider(fetch.data);
       } catch (e) {
         console.error('Slider fetching failed', e);
@@ -53,14 +53,14 @@ const Slider = () => {
       navigate('/productlistbyteam/68a6ad0106ac770502cbd3e4')
   }
 
-  //console.log(`Image URL: https://green-pitch-server-production.up.railway.app/${currentSlide.image}`);
+  //console.log(`Image URL: https://green-pitch.onrender.com/${currentSlide.image}`);
   //console.log(sliders[0],sliders[1],sliders[2])
 
   return (
     <div className="relative z-10 w-full h-[500px] max-w-screen">
       {/* Background Image */}
       <img
-          src={`https://green-pitch-server-production.up.railway.app/${currentSlide.image}`}
+          src={`https://green-pitch.onrender.com/${currentSlide.image}`}
            alt={currentSlide.headline}
           className="absolute inset-0 bg-conatin bg-center bg-no-repeat transition-all duration-500 z-0 h-full w-full"
          />
