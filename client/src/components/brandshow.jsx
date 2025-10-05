@@ -12,7 +12,7 @@ const BrandShow = (props) => {
      useEffect(()=>{
         const fetch=async()=>{
             try{
-                const brands=await axios.get('https://green-pitch.onrender.com/brand')
+                const brands=await axios.get('https://green-pitch-server-production.up.railway.app//brand')
                 setBranddata(brands.data)
                 //console.log(brands.data)
                 setLoading(false)
@@ -28,7 +28,7 @@ const BrandShow = (props) => {
     //  if(branddata.length==0)
     //     console.log('empty')
     // else
-    //   console.log(`https://green-pitch.onrender.com${branddata[0].brandimg}`)
+    //   console.log(`https://green-pitch-server-production.up.railway.app/${branddata[0].brandimg}`)
     // if (loading || !branddata.length) {
     //     return <Brandskeleton />;
     // }
@@ -61,7 +61,7 @@ const BrandShow = (props) => {
                             initial={{opacity:0,x:20}}
                             animate={{opacity:1,x:0}}
                             transition={{duration:0.5,delay:index*0.1}}>
-                            <img src={`https://green-pitch.onrender.com${item.brandimg}`} alt={item.brandname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
+                            <img src={`https://green-pitch-server-production.up.railway.app/${item.brandimg}`} alt={item.brandname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
                             <div className='text-center mt-3 font-semibold'>{item.brandname}</div>
                         </motion.div>
                  </Link>

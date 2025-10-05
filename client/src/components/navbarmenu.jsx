@@ -10,9 +10,9 @@ const NavbarMenu = () => {
     const fetchData = async () => {
       try {
         const [teamsRes, brandsRes, categoriesRes] = await Promise.all([
-          axios.get('https://green-pitch.onrender.com/teamname'),
-          axios.get('https://green-pitch.onrender.com/brandname'),
-          axios.get('https://green-pitch.onrender.com/categoryname'),
+          axios.get('https://green-pitch-server-production.up.railway.app//teamname'),
+          axios.get('https://green-pitch-server-production.up.railway.app//brandname'),
+          axios.get('https://green-pitch-server-production.up.railway.app//categoryname'),
         ]);
 
         console.log("Teams:", teamsRes.data);
