@@ -30,7 +30,7 @@ const Signup = () => {
         try {
             const hashedpassword=await bcrypt.hash(form.password,10)
             const {name,email}=form
-            const res = await axios.post('https://green-pitch-server-production.up.railway.app//signup', {name,email,password:hashedpassword})
+            const res = await axios.post('https://green-pitch-server-production.up.railway.app/signup', {name,email,password:hashedpassword})
             if (res.status === 200)
                 {   
                     toast.success("user created",{autoClose:1000,onClose:()=>navigate('/login')})

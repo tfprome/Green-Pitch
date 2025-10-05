@@ -100,7 +100,7 @@ export const initiatePayment = async (req, res) => {
     }
 
     const invoice = invoiceData[0];
-    const demoGatewayURL = `https://green-pitch-server-production.up.railway.app//payment-success/${invoice._id}`;
+    const demoGatewayURL = `https://green-pitch-server-production.up.railway.app/payment-success/${invoice._id}`;
 
     return res.status(200).json({
       status: "success",

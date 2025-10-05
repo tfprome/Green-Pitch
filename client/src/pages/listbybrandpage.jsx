@@ -14,7 +14,7 @@ const Listbybrand = (props) => {
     useEffect(() => {
         const fetchlistbybrand = async (id) => {
             try {
-                const res = await axios.get(`https://green-pitch-server-production.up.railway.app//listbybrand/${id}`)
+                const res = await axios.get(`https://green-pitch-server-production.up.railway.app/listbybrand/${id}`)
                 setproducts(res.data.data)
                 //console.log(products)
             }
@@ -40,7 +40,7 @@ const Listbybrand = (props) => {
                     products.map((p) => (
                         <Link to={`/productdetails/${p._id}`}>
                            <div key={p._id} className='shadow-md rounded-md w-74 cursor-pointer transition-transform ease-in-out duration-300 hover:shadow-2xl hover:scale-105'>
-                            <img className='w-full h-80' src={`https://green-pitch-server-production.up.railway.app/${p.brandimg}`} alt={p.brandname} height={150} width={150} />
+                            <img className='w-full h-80' src={`https://green-pitch-server-production.up.railway.app${p.brandimg}`} alt={p.brandname} height={150} width={150} />
                             <div className='p-3'>
                             <h3 className='text-center font-bold m-1'>{p.brandname}</h3>
                             <p className="text-sm m-2">

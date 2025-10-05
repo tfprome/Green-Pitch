@@ -19,7 +19,7 @@ const ProductDetails = (props) => {
     useEffect(() => {
         const fetchdetails = async () => {
             try {
-                const res = await axios.get(`https://green-pitch-server-production.up.railway.app//productdetails/${id}`);
+                const res = await axios.get(`https://green-pitch-server-production.up.railway.app/productdetails/${id}`);
                 setDetails(res.data.data);
                 setPrice(Number(res.data.data.brandprice) * size * quantity);
             } catch (e) {
@@ -35,7 +35,7 @@ const ProductDetails = (props) => {
         if (Token) {
             //console.log('hm')
             try {
-                const res = await axios.post('https://green-pitch-server-production.up.railway.app//addcart',
+                const res = await axios.post('https://green-pitch-server-production.up.railway.app/addcart',
                     {
                         ProductID: details._id,
                         size: selectedSize,
@@ -91,7 +91,7 @@ const ProductDetails = (props) => {
                 
             }
             if (token) {
-                const res = await axios.post(`https://green-pitch-server-production.up.railway.app//addwish/${id}`, {},
+                const res = await axios.post(`https://green-pitch-server-production.up.railway.app/addwish/${id}`, {},
                     {
                         headers: { Authorization: `Bearer ${token}` }
                     }
@@ -116,7 +116,7 @@ const ProductDetails = (props) => {
                     <div className='flex flex-col mb-20 lg:flex-row items-start justify-center px-4 lg:px-0'>
                         <div className='w-full lg:w-2/5 mt-10 lg:mt-35 mb-6 lg:mb-0 flex justify-center'>
                             <img
-                                src={`https://green-pitch-server-production.up.railway.app/${details.brandimg}`}
+                                src={`https://green-pitch-server-production.up.railway.app${details.brandimg}`}
                                 alt="productimage"
                                 className='max-w-full h-auto lg:w-[350px] lg:h-[400px]'
                             />
