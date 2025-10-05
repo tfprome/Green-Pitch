@@ -12,7 +12,7 @@ const Listbyteam = (props) => {
     useEffect(() => {
         const fetchlistbycategory = async (id) => {
             try {
-                const res = await axios.get(`https://green-pitch-server-production.up.railway.app/listbycategory/${id}`)
+                const res = await axios.get(`https://green-pitch.vercel.app//listbycategory/${id}`)
                 setproducts(res.data.data)
                 //console.log(products)
             }
@@ -34,7 +34,7 @@ const Listbyteam = (props) => {
                     products.map((p) => (
                         <Link to={`/productdetails/${p._id}`}>
                            <div key={p._id} className='shadow-md rounded-md w-74 cursor-pointer transition-transform ease-in-out duration-300 hover:shadow-2xl hover:scale-105'>
-                            <img className='w-full h-80' src={`https://green-pitch-server-production.up.railway.app${p.brandimg}`} alt={p.brandname} height={150} width={150} />
+                            <img className='w-full h-80' src={`https://green-pitch.vercel.app/${p.brandimg}`} alt={p.brandname} height={150} width={150} />
                             <div className='p-3'>
                             <h3 className='text-center font-bold m-1'>{p.brandname}</h3>
                             <p className="text-sm m-2">

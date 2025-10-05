@@ -10,7 +10,7 @@ const CartDropdown = ({ isOpen }) => {
       try {
         const token = sessionStorage.getItem('token');
         if (!token) return;
-        const res = await axios.get('https://green-pitch-server-production.up.railway.app/readcart', {
+        const res = await axios.get('https://green-pitch.vercel.app//readcart', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCartItems(res.data.data);
@@ -24,7 +24,7 @@ const CartDropdown = ({ isOpen }) => {
   const removeCart = async (id) => {
     try {
       const token = sessionStorage.getItem('token');
-      await axios.delete(`https://green-pitch-server-production.up.railway.app/removecart/${id}`, {
+      await axios.delete(`https://green-pitch.vercel.app//removecart/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCartItems((prev) => prev.filter((item) => item._id !== id));
@@ -65,7 +65,7 @@ const CartDropdown = ({ isOpen }) => {
                   </button>
                 </div>
                 <img
-                  src={`https://green-pitch-server-production.up.railway.app${item.product.brandimg}`}
+                  src={`https://green-pitch.vercel.app/${item.product.brandimg}`}
                   alt={item.product.brandname}
                   className="w-20 h-20 object-cover rounded"
                 />

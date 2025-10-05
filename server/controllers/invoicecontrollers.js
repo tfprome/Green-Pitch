@@ -100,7 +100,7 @@ export const initiatePayment = async (req, res) => {
     }
 
     const invoice = invoiceData[0];
-    const demoGatewayURL = `http://localhost:5000/payment-success/${invoice._id}`;
+    const demoGatewayURL = `https://green-pitch.vercel.app//payment-success/${invoice._id}`;
 
     return res.status(200).json({
       status: "success",
