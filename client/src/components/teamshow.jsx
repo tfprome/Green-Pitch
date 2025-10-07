@@ -12,7 +12,7 @@ const Categoryshow = (props) => {
      useEffect(()=>{
         const fetch=async()=>{
             try{
-                const categories=await axios.get('https://green-pitch-server-production.up.railway.app/category')
+                const categories=await axios.get('https://green-pitch.onrender.com/category')
                 setCategorydata(categories.data)
                 //console.log(teams.data)
                 setLoading(false)
@@ -27,9 +27,9 @@ const Categoryshow = (props) => {
     //  if(branddata.length==0)
     //     console.log('empty')
     // else
-    //   console.log(`https://green-pitch-server-production.up.railway.app${branddata[0].brandimg}`)
+    //   console.log(`https://green-pitch.onrender.com${branddata[0].brandimg}`)
     
-     //console.log(`https://green-pitch-server-production.up.railway.app${categorydata[15].categorylogo}`)
+     //console.log(`https://green-pitch.onrender.com${categorydata[15].categorylogo}`)
      //console.log(categorydata)
 
     return (
@@ -47,7 +47,7 @@ const Categoryshow = (props) => {
                              initial={{opacity:0,x:20}}
                             animate={{opacity:1,x:0}}
                             transition={{duration:0.5,delay:index*0.1}}>
-                        <img src={`https://green-pitch-server-production.up.railway.app${item.categorylogo}`} alt={item.categoryname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
+                        <img src={`https://green-pitch.onrender.com${item.categorylogo}`} alt={item.categoryname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
                         <div className='text-center mt-3 font-semibold'>{item.categoryname}</div>
                   </motion.div>
              </Link>
