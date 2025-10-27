@@ -6,6 +6,7 @@ import { Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { toast } from 'react-toastify';
+import ProductDetailsSkeleton from '../components/skeleton/productdetailsSkeleton';
 
 const ProductDetails = (props) => {
     const { id } = useParams();
@@ -112,7 +113,7 @@ const ProductDetails = (props) => {
         <div>
             <Navbar />
             <div>
-                {details && (
+                {!details ? (<ProductDetailsSkeleton/>): (
                     <div className='flex flex-col mb-20 lg:flex-row items-start justify-center px-4 lg:px-0'>
                         <div className='w-full lg:w-2/5 mt-10 lg:mt-35 mb-6 lg:mb-0 flex justify-center'>
                             <img

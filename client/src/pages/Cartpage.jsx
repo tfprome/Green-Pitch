@@ -4,10 +4,12 @@ import Navbar from "../components/navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
+import WishpageSkeleton from "../components/skeleton/wishSkeleton";
 
 const CartPage = () => {
     const navigate=useNavigate()
     const [cartItems, setCartItems] = useState([]);
+    const [loading,setLoading]=useState(true)
 
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -20,6 +22,9 @@ const CartPage = () => {
                 setCartItems(res.data.data);
             } catch (e) {
                 console.error("Could not fetch cart items", e);
+            }
+            finally{
+                setLoading(false)
             }
         };
         fetchCartItems();
@@ -65,14 +70,14 @@ const CartPage = () => {
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
-            <div className="flex-grow p-6 bg-gray-200">
+           {loading?<WishpageSkeleton/>: 
+           <div className="flex-grow p-6 bg-gray-200">
                 {cartItems.length > 0 ? (
                     cartItems.map((item) => (
                         <div
                             key={item._id}
                             className="flex justify-between items-center bg-white shadow-md rounded-xl p-4 mb-4"
                         >
-                            {/* Left side: product info */}
                             <div>
                                 <h3 className="text-lg font-semibold">
                                     {item.product.brandname}
@@ -116,7 +121,7 @@ const CartPage = () => {
                 ) : (
                     <p className="text-gray-500">No cart items</p>
                 )}
-            </div>
+            </div>}
             <Footer className='fixed bottom-0 w-full'/>
         </div>
     );

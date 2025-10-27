@@ -2,9 +2,11 @@ import React, {useState,useEffect}from 'react';
 import axios from 'axios'
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
+import WishpageSkeleton from '../components/skeleton/wishSkeleton';
 
 const Wishpage = (props) => {
     const [wishitems,setWishItems]=useState([]);
+    const [loading,setLoading]=useState(true)
 
     useEffect(() => {
         const fetchWishItems = async () => {
@@ -17,6 +19,9 @@ const Wishpage = (props) => {
             setWishItems(res.data.data);
           } catch (e) {
             console.error('Could not fetch cart items', e);
+          }
+          finally{
+            setLoading(false)
           }
         };
         fetchWishItems();
@@ -38,14 +43,14 @@ const Wishpage = (props) => {
       return (
         <div className='flex flex-col min-h-screen'>
          <Navbar/>
-          <div className="p-6 bg-gray-100 flex-grow">
+         {loading? <WishpageSkeleton/>:
+         <div className="p-6 bg-gray-100 flex-grow">
           {wishitems.length > 0 ? (
             wishitems.map((item) => (
               <div
                 key={item._id}
                 className="flex justify-between items-center bg-white shadow-md rounded-xl p-4 mb-4"
               >
-                {/* Left side: product info */}
                 <div>
                   <h3 className="text-lg font-semibold">{item.product.brandname}</h3>
                   <p className="text-gray-600">{item.product.branddesc}</p>
@@ -71,9 +76,9 @@ const Wishpage = (props) => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500">No wishlist items</p>
+            <p>No wishlist items</p>
           )}
-          </div>
+          </div>}
           <Footer/>
         </div>
       );

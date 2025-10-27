@@ -3,10 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/navbar';
 import Footer from '../components/Footer';
+import Brandskeleton from './../components/skeleton/brands-skeleton';
+import ProductShowSkeleton from '../components/skeleton/products-skeleton';
 
 const Listbyteam = (props) => {
     const { id } = useParams();
     const [products, setproducts] = useState([]);
+    const [loading,setLoading]=useState(true)
 
 
     useEffect(() => {
@@ -19,6 +22,9 @@ const Listbyteam = (props) => {
             catch (e) {
                 console.log('error sending fetching req in listbybrand', e)
             }
+            finally{
+                setLoading(false)
+            }
         }
 
         fetchlistbycategory(id);
@@ -29,7 +35,8 @@ const Listbyteam = (props) => {
         <div>
             <Navbar />
             {/* <h2 className="text-xl font-bold">Products by category</h2> */}
-            <div className='flex flex-wrap gap-40 justify-center my-10'>
+            {loading?<ProductShowSkeleton count={4}/>:
+            (<div className='flex flex-wrap gap-40 justify-center my-10'>
                 {products.length > 0 ? (
                     products.map((p) => (
                         <Link to={`/productdetails/${p._id}`}>
@@ -56,10 +63,10 @@ const Listbyteam = (props) => {
                         </Link>
                     ))
                 ) : (
-                    <p>No products found for this brand.</p>
+                    <p>No products in this category</p>
                 )}
 
-            </div>
+            </div>)}
             <Footer/>
         </div>
     );

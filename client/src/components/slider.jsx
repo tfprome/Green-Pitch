@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import SliderSkeleton from './skeleton/sliderskeleton';
 
 const Slider = () => {
   const [sliders, setSlider] = useState([]);
@@ -24,7 +25,7 @@ const Slider = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === sliders.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Slide every 5 seconds
+    }, 3000); 
 
     return () => clearInterval(interval);
   }, [sliders]);
@@ -41,7 +42,7 @@ const Slider = () => {
     );
   };
 
-  if (sliders.length === 0) return <div>Loading...</div>;
+  if (sliders.length === 0) return <SliderSkeleton/>;
 
   const currentSlide = sliders[currentIndex];
 
