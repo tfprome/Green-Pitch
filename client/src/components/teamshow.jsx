@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import {motion} from 'framer-motion'
+import {motion,easeOut} from 'framer-motion'
 import Categoryskeleton from './skeleton/categories-skeleton';
 
 const Categoryshow = (props) => {
@@ -38,7 +38,11 @@ const Categoryshow = (props) => {
           {loading?
           <Categoryskeleton count={8}/>:
           <div>
-            <div className='text-4xl font-bold text-center mt-10'>Featured Categories</div>
+            <motion.div className='text-4xl font-bold text-center mt-10'
+            initial={{opacity:0,y:-20}}
+            animate={{opacity:1,y:0}}
+            transition={{duration:1,ease:easeOut}}
+            >Featured Categories</motion.div>
            <div className='flex flex-wrap mt-9 p-5 justify-center' style={{overflowX:'hidden'}}>
            {categorydata.map((item,index)=>(
              <Link to={`/productlistbyteam/${item._id}`}>

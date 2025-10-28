@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import ProductShowSkeleton from "./skeleton/products-skeleton";
+import {easeOut,motion} from 'framer-motion'
 
 const ProductShow = () => {
   const [products, setProducts] = useState([]);
@@ -48,19 +49,23 @@ const ProductShow = () => {
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
   };
 
 
 
   return (
    <div>
-    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
-        Our Top Products
-      </h2>
+    
     {loading?
-    <ProductShowSkeleton count={4}/>:
+    (<ProductShowSkeleton count={4}/>):
     <div>
+      <motion.div className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center"
+      initial={{opacity:0,y:-30}}
+      animate={{opacity:1,y:0}}
+      transition={{duration:1,ease:easeOut}}>
+        Our Top Products
+      </motion.div>
        <div className="w-full px-2 sm:px-4 md:px-6 lg:px-10 py-6">
       
       <Slider {...settings}>

@@ -5,7 +5,7 @@ const Categoryskeleton = ({ count = 8 }) => {
 
   return (
     <div className="">
-      <div className="text-4xl font-bold text-center mt-10">Featured Categories</div>
+      {/* <div className="text-4xl font-bold text-center mt-10">Featured Categories</div> */}
 
       {/* Mark region as loading for a11y */}
       <div

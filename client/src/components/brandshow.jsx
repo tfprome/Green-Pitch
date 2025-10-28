@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Brandskeleton from './skeleton/brands-skeleton';
-import {easeInOut, motion} from 'framer-motion'
+import {easeInOut, easeOut, motion} from 'framer-motion'
 
 const BrandShow = (props) => {
     //const [formdata,setFormdata]=useState({brandname:'',brandimg:''})
@@ -39,10 +39,15 @@ const BrandShow = (props) => {
     return (
         
      <div>
-        {loading?<Brandskeleton count={8}/>
+        {loading?(<Brandskeleton count={8} />)
         :
-        <div className=''>
-          <div className='text-4xl font-bold text-center mt-10'>Featured Brands</div>
+        (<div className=''>
+          <motion.div className='text-4xl font-bold text-center mt-10'
+            initial={{opacity:0,y:-30}}
+            animate={{opacity:1,y:0}}
+            transition={{duration:1,ease:easeOut}}
+            >Featured Brands</motion.div>
+
               <motion.div className='flex flex-wrap mt-9 p-5 justify-center'
                initial="hidden"
                animate="visible"
@@ -68,7 +73,7 @@ const BrandShow = (props) => {
              
           ))}
            </motion.div>
-       </div>}
+       </div>)}
      </div>
 
     );
