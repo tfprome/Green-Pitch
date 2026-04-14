@@ -6,13 +6,14 @@ const NavbarMenu = () => {
   const [brandname, setBrands] = useState([]);
   const [categoryname, setCategories] = useState([]);
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [teamsRes, brandsRes, categoriesRes] = await Promise.all([
-          axios.get('https://green-pitch.onrender.com/teamname'),
-          axios.get('https://green-pitch.onrender.com/brandname'),
-          axios.get('https://green-pitch.onrender.com/categoryname'),
+          axios.get(`${Backendurl}/teamname`),
+          axios.get(`${Backendurl}/brandname`),
+          axios.get(`${Backendurl}/categoryname`),
         ]);
 
         console.log("Teams:", teamsRes.data);

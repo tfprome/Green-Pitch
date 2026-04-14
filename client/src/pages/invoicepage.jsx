@@ -9,11 +9,13 @@ const InvoicePage = () => {
   const [invoice, setInvoice] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
+
   useEffect(() => {
     const fetchInvoice = async () => {
       try {
         const token = sessionStorage.getItem("token");
-        const res = await axios.get(`https://green-pitch.onrender.com/invoice/${id}`, {
+        const res = await axios.get(`${Backendurl}/invoice/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setInvoice(res.data.invoice);
@@ -30,7 +32,7 @@ const InvoicePage = () => {
     try {
       const token = sessionStorage.getItem("token");
       const res = await axios.post(
-        `https://green-pitch.onrender.com/payment/initiate/${id}`,
+        `${Backendurl}/payment/initiate/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

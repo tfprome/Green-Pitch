@@ -20,6 +20,8 @@ const Navbar = () => {
   const [showBrands,setShowBrands]=useState(false)
   const [showCategories,setShowCategories]=useState(false)
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
+
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -27,9 +29,9 @@ const Navbar = () => {
     const fetchData = async () => {
       try {
         const [teamsRes, brandsRes, categoriesRes] = await Promise.all([
-          axios.get("https://green-pitch.onrender.com/teamname"),
-          axios.get("https://green-pitch.onrender.com/brandname"),
-          axios.get("https://green-pitch.onrender.com/categoryname"),
+          axios.get(`${Backendurl}/teamname`),
+          axios.get(`${Backendurl}/brandname`),
+          axios.get(`${Backendurl}/categoryname`),
         ]);
         setTeams(teamsRes.data.data || []);
         setBrands(brandsRes.data.data || []);

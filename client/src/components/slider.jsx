@@ -8,10 +8,11 @@ const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate=useNavigate()
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetch = await axios.get('https://green-pitch.onrender.com/slider');
+        const fetch = await axios.get(`${Backendurl}/slider`);
         setSlider(fetch.data);
       } catch (e) {
         console.error('Slider fetching failed', e);
@@ -61,7 +62,7 @@ const Slider = () => {
     <div className="relative z-10 w-full h-[500px] max-w-screen">
       {/* Background Image */}
       <img
-          src={`https://green-pitch.onrender.com/${currentSlide.image}`}
+          src={`${Backendurl}/${currentSlide.image}`}
            alt={currentSlide.headline}
           className="absolute inset-0 bg-conatin bg-center bg-no-repeat transition-all duration-500 z-0 h-full w-full"
          />

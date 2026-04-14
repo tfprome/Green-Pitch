@@ -9,10 +9,12 @@ const Categoryshow = (props) => {
     const [categorydata,setCategorydata]=useState([])
     const [loading,setLoading]=useState(true)
 
+    const Backendurl=import.meta.env.VITE_BACKEND_URL
+
      useEffect(()=>{
         const fetch=async()=>{
             try{
-                const categories=await axios.get('https://green-pitch.onrender.com/category')
+                const categories=await axios.get(`${Backendurl}/category`)
                 setCategorydata(categories.data)
                 //console.log(teams.data)
                 setLoading(false)
@@ -51,7 +53,7 @@ const Categoryshow = (props) => {
                              initial={{opacity:0,x:20}}
                             animate={{opacity:1,x:0}}
                             transition={{duration:0.5,delay:index*0.1}}>
-                        <img src={`https://green-pitch.onrender.com${item.categorylogo}`} alt={item.categoryname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
+                        <img src={`${Backendurl}${item.categorylogo}`} alt={item.categoryname} height={200} width={200} className='max-w-full max-h-[100px] p-4 object-contain'/>
                         <div className='text-center mt-3 font-semibold'>{item.categoryname}</div>
                   </motion.div>
              </Link>

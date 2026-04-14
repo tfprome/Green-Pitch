@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import ProductShowSkeleton from "./skeleton/products-skeleton";
 import {easeOut,motion} from 'framer-motion'
+import { fetchProducts } from './../helpers/ProductsApi';
+import { ChevronsLeftRightEllipsis } from "lucide-react";
 
 const ProductShow = () => {
   const [products, setProducts] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [loading,setLoading]=useState(true)
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
+
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get(
-          "https://green-pitch.onrender.com/getproducts"
-        );
-        setProducts(res.data);
-        setLoading(false)
-      } catch (e) {
-        console.error("Failed to fetch products:", e);
-      }
-    };
-    fetchProducts();
+    const Products=async()=>{
+         try{
+            const productsdata=await fetchProducts();
+            setProducts(productsdata.data.data)
+            setLoading(false)
+         }
+         catch(e){
+            console.log('products fetching failed',e)
+         }
+    }
+    
+    Products();
 
     setWindowWidth(window.innerWidth);
 
@@ -33,6 +37,8 @@ const ProductShow = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  console.log('products',products)
 
   const getSlidesToShow = () => {
     if (windowWidth < 640) return 1; 
@@ -69,12 +75,12 @@ const ProductShow = () => {
        <div className="w-full px-2 sm:px-4 md:px-6 lg:px-10 py-6">
       
       <Slider {...settings}>
-        {products.slice(0, 10).map((item) => (
+        {products?.slice(0, 10).map((item) => (
           <div key={item._id} className="p-2 sm:p-3">
             <Link to={`/productdetails/${item._id}`}>
               <div className="bg-white shadow-md rounded-xl overflow-hidden hover:scale-105 hover:bg-gray-100 transform transition flex flex-col h-full">
                 <img
-                  src={`https://green-pitch.onrender.com${item.brandimg}`}
+                  src={`${Backendurl}${item.brandimg}`}
                   alt={item.brandname}
                   className="w-full h-36 sm:h-44 md:h-52 object-contain bg-gray-50"
                 />

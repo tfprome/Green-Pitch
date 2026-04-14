@@ -14,6 +14,8 @@ const Signup = () => {
         confirmPassword: "",
     });
 
+    const Backendurl=import.meta.env.VITE_BACKEND_URL
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
@@ -30,7 +32,7 @@ const Signup = () => {
         try {
             const hashedpassword=await bcrypt.hash(form.password,10)
             const {name,email}=form
-            const res = await axios.post('https://green-pitch.onrender.com/signup', {name,email,password:hashedpassword})
+            const res = await axios.post(`${Backendurl}/signup`, {name,email,password:hashedpassword})
             if (res.status === 200)
                 {   
                     toast.success("user created",{autoClose:1000,onClose:()=>navigate('/login')})
