@@ -9,6 +9,8 @@ const SearchBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const wrapperRef = useRef(null);
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,7 +33,7 @@ const SearchBar = () => {
     }
 
     try {
-      const res = await axios.get(`https://green-pitch.onrender.com/productlistbykeyword/${value}`);
+      const res = await axios.get(`${Backendurl}/productlistbykeyword/${value}`);
       setResults(res.data.data);
       setShowDropdown(true);
     } catch (err) {
@@ -68,7 +70,7 @@ const SearchBar = () => {
               </div>
               {product.brand?.brandimg && (
                 <img
-                  src={`https://green-pitch.onrender.com${product.brandimg}`}
+                  src={`${Backendurl}${product.brandimg}`}
                   alt={product.title}
                   className="w-12 h-12 object-cover rounded"
                 />

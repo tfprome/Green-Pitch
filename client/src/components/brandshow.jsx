@@ -4,15 +4,20 @@ import {Link} from 'react-router-dom'
 import Brandskeleton from './skeleton/brands-skeleton';
 import {easeInOut, easeOut, motion} from 'framer-motion'
 
+
+
 const BrandShow = (props) => {
     //const [formdata,setFormdata]=useState({brandname:'',brandimg:''})
     const [branddata,setBranddata]=useState([])
     const [loading,setLoading]=useState(true)
+    //console.log(import.meta.env.VITE_BACKEND_URL);
+
+    const Backendurl=import.meta.env.VITE_BACKEND_URL
 
      useEffect(()=>{
         const fetch=async()=>{
             try{
-                const brands=await axios.get('https://green-pitch.onrender.com/brand')
+                const brands=await axios.get(`${Backendurl}/brand`)
                 setBranddata(brands.data)
                 //console.log(brands.data)
                 setLoading(false)

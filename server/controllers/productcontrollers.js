@@ -107,9 +107,9 @@ export const detailsService = async (req, res) => {
 export const productlistbykeyword = async (req, res) => {
     try {
         const value = req.params.value || '';
-        const regex = { $regex: value, $options: 'i' }; 
+        const regex = { $regex: value, $options: 'i' };
 
-        const SearchParams = [{ brandname: regex },{ teamname: regex }]
+        const SearchParams = [{ brandname: regex }, { teamname: regex }]
         const SearchQuery = { $or: SearchParams };
         //console.log(SearchParams)
         const data = await products.aggregate([
@@ -141,19 +141,25 @@ export const productlistbykeyword = async (req, res) => {
                 },
             },
         ]);
-       // console.log(data)
+        // console.log(data)
         res.status(200).json({ status: 'success', data });
     } catch (e) {
         res.status(500).json({ status: 'failed', error: e.message });
     }
 };
 
-export const getproducts=async(req,res)=>{
-    try{
-        const data=await products.find()
-        return res.status(200).json(data)
+export const getproducts = async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = parseInt(req.query.skip) || 0;
+
+        const totalProducts = await products.countDocuments();
+
+        const data = await products.find().skip(skip).limit(limit);
+
+        return res.status(200).json({ 'total': totalProducts, data })
     }
-    catch(e){
-         return res.status(500).json('server error in get products')
+    catch (e) {
+        return res.status(500).json('server error in get products')
     }
 }

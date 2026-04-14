@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 const CartDropdown = ({ isOpen }) => {  
   const [cartItems, setCartItems] = useState([]);
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
+
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const token = sessionStorage.getItem('token');
         if (!token) return;
-        const res = await axios.get('https://green-pitch.onrender.com/readcart', {
+        const res = await axios.get(`${Backendurl}/readcart`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCartItems(res.data.data);
@@ -24,7 +26,7 @@ const CartDropdown = ({ isOpen }) => {
   const removeCart = async (id) => {
     try {
       const token = sessionStorage.getItem('token');
-      await axios.delete(`https://green-pitch.onrender.com/removecart/${id}`, {
+      await axios.delete(`${Backendurl}/removecart/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCartItems((prev) => prev.filter((item) => item._id !== id));
@@ -65,7 +67,7 @@ const CartDropdown = ({ isOpen }) => {
                   </button>
                 </div>
                 <img
-                  src={`https://green-pitch.onrender.com${item.product.brandimg}`}
+                  src={`${Backendurl}${item.product.brandimg}`}
                   alt={item.product.brandname}
                   className="w-20 h-20 object-cover rounded"
                 />

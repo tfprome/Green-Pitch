@@ -13,21 +13,25 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const Backendurl=import.meta.env.VITE_BACKEND_URL
+
   const handleSubmit = async(e) => {
     e.preventDefault();
     //console.log("Login Data:", form);
     const{email,password}=form
     try{
-      const res=await axios.post('https://green-pitch.onrender.com/login',{email,password})
+      const res=await axios.post(`${Backendurl}/login`,{email,password})
     if(res.status===200)
     {
-      const token = res.data.token; 
+      console.log(res.data)
+      const token = res.data.token;
+      const userRole=res.data.userrole 
       sessionStorage.setItem('token', token); 
       //sessionStorage.setItem('UserID',res.data.user_id)
       toast.success(('Login Successful'),
       {position:"top-center",
         autoClose:1000,
-        onClose:()=>navigate('/home')
+        onClose:()=>{userRole=='admin' ? navigate('/admin/view') : navigate('/home') }
       });
       
     }}

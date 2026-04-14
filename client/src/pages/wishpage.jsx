@@ -8,12 +8,14 @@ const Wishpage = (props) => {
     const [wishitems,setWishItems]=useState([]);
     const [loading,setLoading]=useState(true)
 
+    const Backendurl=import.meta.env.VITE_BACKEND_URL
+
     useEffect(() => {
         const fetchWishItems = async () => {
           try {
             const token = sessionStorage.getItem('token');
             if (!token) return;
-            const res = await axios.get('https://green-pitch.onrender.com/readwish', {
+            const res = await axios.get(`${Backendurl}/readwish`, {
               headers: { Authorization: `Bearer ${token}` },
             });
             setWishItems(res.data.data);
@@ -30,7 +32,7 @@ const Wishpage = (props) => {
       const removeFromWish = async (id) => {
         try {
           const token = sessionStorage.getItem("token");
-          const res=await axios.delete(`https://green-pitch.onrender.com/removewish/${id}`, {
+          const res=await axios.delete(`${Backendurl}/removewish/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if(res.status==200)
@@ -69,7 +71,7 @@ const Wishpage = (props) => {
     
                 {/* Right side: product image */}
                 <img
-                  src={`https://green-pitch.onrender.com${item.product.brandimg}`}
+                  src={`${Backendurl}${item.product.brandimg}`}
                   alt={item.product.brandname}
                   className="w-32 h-32 object-cover rounded-lg"
                 />

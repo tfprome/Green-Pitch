@@ -31,20 +31,38 @@ export const loginservice=async(req,res)=>{
     const {email,password}=req.body
     try{
         const findemail=await usermodel.findOne({email:email})
-    if(!findemail){res.status(404).json('Wrong email')}
+        if(!findemail){res.status(404).json('Wrong email')}
         //console.log(password,findemail.password)
         const passwordcheck= await bcrypt.compare(password,findemail.password)
-        //console.log(passwordcheck)
+        const userrole=findemail.role
+        //console.log(userrole)
         if(!passwordcheck)
             res.status(401).json('wrong pass')
         else
         { 
+            //console.log('findemail',userrole)
             const token = jwt.sign({ id:findemail._id }, JWT_SECRET_KEY, { expiresIn: '1h' });
-            res.status(200).json({'message':'Login successful',token,'user_id':findemail._id})
+            res.status(200).json({'message':'Login successful',token,userrole})
         }
           
     }
     catch(e){
         res.status(500).json('Login server error')
     }
+}
+
+export const GetIndividualUser=async(req,res)=>{
+        try{
+             const userID=req.UserID
+
+             const userdata=await usermodel.findById(userID)
+             if (!userdata) {
+                return res.status(404).json({ message: "User not found" });
+              }
+              
+              return res.status(200).json({ message: "User found", data:userdata });
+        }
+        catch(e){
+            res.status(500).json({message:'Server error'})
+        }
 }
