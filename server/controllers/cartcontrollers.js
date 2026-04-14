@@ -1,5 +1,5 @@
 import mongoose, { deleteModel } from 'mongoose';
-import cartmodel from './../models/cartmodel.js';
+import cartmodel from '../models/cartmodel.js';
 const ObjectId = mongoose.Types.ObjectId
 
 export const addcartservice = async (req, res) => {

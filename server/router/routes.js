@@ -24,7 +24,7 @@ router.get('/categoryname',homecontroller.categoryname)
 router.post('/signup',usercontrollers.signupservice)
 router.post('/login',usercontrollers.loginservice)
 
-router.get('/getproducts',productcontrollers.getproducts)
+router.get('/getproducts',authmiddleware,productcontrollers.getproducts)
 router.get('/productdetails/:id',productcontrollers.detailsService)
 router.get('/listbycategory/:id',productcontrollers.listbycategoryservice)
 router.get('/listbybrand/:id',productcontrollers.listbybrandservice)
@@ -44,6 +44,8 @@ router.get('/invoice/:id',authmiddleware,invoicecontrollers.getInvoiceDetails)
 router.post("/payment/initiate/:id", authmiddleware, invoicecontrollers.initiatePayment);
 router.get("/payment-success/:id", invoicecontrollers.paymentSuccess);
 router.get("/payment-fail/:id", invoicecontrollers.paymentFail);
+
+router.get('/user',authmiddleware,usercontrollers.GetIndividualUser)
 
 
 export default router;

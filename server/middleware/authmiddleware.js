@@ -7,7 +7,7 @@ export const authmiddleware=(req,res,next)=>{
     try{
         const token=req.headers.authorization?.split(" ")[1]
     if(!token)
-        res.status(402).json('No token in auth')
+        res.status(401).json('No token in auth')
     if(token){
         const decoded=jwt.verify(token,JWT_SECRET_KEY)
         req.UserID=decoded.id
