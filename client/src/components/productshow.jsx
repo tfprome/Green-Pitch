@@ -19,8 +19,8 @@ const ProductShow = () => {
   useEffect(() => {
     const Products=async()=>{
          try{
-            const productsdata=await fetchProducts();
-            setProducts(productsdata.data.data)
+            const productsdata=await fetchProducts(0,10);
+            setProducts(productsdata.data)
             setLoading(false)
          }
          catch(e){

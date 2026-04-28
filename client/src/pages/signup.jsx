@@ -14,7 +14,7 @@ const Signup = () => {
         confirmPassword: "",
     });
 
-    const Backendurl=import.meta.env.VITE_BACKEND_URL
+    const Backendurl = import.meta.env.VITE_BACKEND_URL
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -30,16 +30,22 @@ const Signup = () => {
 
         console.log("Signup Data:", form);
         try {
-            const hashedpassword=await bcrypt.hash(form.password,10)
-            const {name,email}=form
-            const res = await axios.post(`${Backendurl}/signup`, {name,email,password:hashedpassword})
-            if (res.status === 200)
-                {   
-                    toast.success("user created",{autoClose:1000,onClose:()=>navigate('/login')})
-                }
+            const hashedpassword = await bcrypt.hash(form.password, 10)
+            const { name, email } = form
+            const res = await axios.post(`${Backendurl}/signup`, { name, email, password: hashedpassword })
+            if (res.status === 200) {
+                toast.success("User created", { autoClose: 1000, onClose: () => navigate('/login') })
+            }
         }
         catch (e) {
-            console.log('error while fetching sognup response', e)
+            if (e.response && e.response.status === 409) {
+                // Handle 409 Conflict
+                toast.warn("User with this email already exists", { autoClose: 1000 });
+            } else {
+                // Handle other errors
+                console.log('Error while fetching signup response:', e);
+                toast.error("An error occurred during signup", { autoClose: 1000 });
+            }
         }
     };
 

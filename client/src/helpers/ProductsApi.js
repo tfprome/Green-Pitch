@@ -4,7 +4,7 @@ import api from '@/api/apiInstance';
 export const fetchProducts = async (skip,limit) => {
     try {
       const res = await api.get(
-        `${Backendurl}/getproducts?skip=${skip}?limit=${limit}`
+        `${Backendurl}/getproducts?skip=${skip}&limit=${limit}`
       );
       console.log(res)
       return res.data;
@@ -13,3 +13,5 @@ export const fetchProducts = async (skip,limit) => {
       throw(e);
     }
   };
+
+  

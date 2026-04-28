@@ -77,9 +77,9 @@ const Dashboard = () => {
       value: totalproducts,
       change: '+23 this month',
       icon: ShoppingBagIcon,
-      color: 'from-purple-500 to-pink-600',
+      color: 'bg-[#e83c10]',
       bgColor: 'bg-purple-50',
-      iconColor: 'text-purple-600'
+      iconColor: 'text-black'
     }
   ];
 
@@ -99,7 +99,7 @@ const Dashboard = () => {
         <div className="flex-1 py-6 px-4">
           <div className="space-y-2">
             {/* Products Option */}
-            <button className="w-full flex items-center space-x-3 px-4 py-3 text-black hover:bg-blue-50 rounded-xl transition group"
+            <button className="w-full flex items-center space-x-3 px-4 py-3 cursor-pointer text-black hover:bg-blue-50 rounded-xl transition group"
               onClick={() => { navigate('/admin/view/products') }}>
               <span className="font-medium">Products</span>
               <span className="ml-auto text-xs text-gray-400">24</span>
