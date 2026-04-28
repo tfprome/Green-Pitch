@@ -163,3 +163,33 @@ export const getproducts = async (req, res) => {
         return res.status(500).json('server error in get products')
     }
 }
+
+export const addproduct = async (req, res) => {
+    try {
+        const { brandname, branddesc, brandprice, brandstar, brandID, categoryID } = req.body;
+
+        if (!brandname || !brandprice || !categoryID) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        const product = await products.create({
+            brandname,
+            branddesc,
+            brandprice,
+            brandstar,
+            brandID,
+            categoryID,
+            brandimg: req.file ? `/uploads/${req.file.filename}` : null
+        });
+
+        res.status(201).json({
+            message: 'Product created successfully',
+            data: product
+        });
+
+    } catch (e) {
+        console.error('Error in addproduct:', e);
+        res.status(500).json({ error: e.message });
+        console.log(e)
+    }
+};

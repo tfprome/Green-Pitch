@@ -6,63 +6,63 @@ import jwt from 'jsonwebtoken'
 
 dotenv.config()
 
-const JWT_SECRET_KEY=process.env.JWT_SECRET_KEY;
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-export const signupservice=async(req,res)=>{
-    const {name,email,password}=req.body;
-    console.log({email,name,password})
-    try{
-           const existinguser=await usermodel.findOne({email:email})
-           if(existinguser)
-              {console.log('user exists')}
-           else{
+export const signupservice = async (req, res) => {
+    const { name, email, password } = req.body;
+    const role = 'user'
+    console.log({ email, name, password, role })
+    try {
+        const existinguser = await usermodel.findOne({ email: email })
+        if (existinguser)
+            res.status(409).json('Email already exists')
+        else {
             //const hashedpassword=await bcrypt.hash(password,10)
-            const data=await usermodel.create({name,email,password})
+            const data = await usermodel.create({ name, email, password, role })
             res.status(200).json('user created')
-           }
+        }
     }
-    catch(e){
-        console.error('error during signup',e)
+    catch (e) {
+        console.error('error during signup', e)
     }
 
 }
 
-export const loginservice=async(req,res)=>{
-    const {email,password}=req.body
-    try{
-        const findemail=await usermodel.findOne({email:email})
-        if(!findemail){res.status(404).json('Wrong email')}
+export const loginservice = async (req, res) => {
+    const { email, password } = req.body
+    try {
+        const findemail = await usermodel.findOne({ email: email })
+        if (!findemail) { res.status(404).json('Wrong email') }
         //console.log(password,findemail.password)
-        const passwordcheck= await bcrypt.compare(password,findemail.password)
-        const userrole=findemail.role
+        const passwordcheck = await bcrypt.compare(password, findemail.password)
+        const userrole = findemail.role
         //console.log(userrole)
-        if(!passwordcheck)
+        if (!passwordcheck)
             res.status(401).json('wrong pass')
-        else
-        { 
+        else {
             //console.log('findemail',userrole)
-            const token = jwt.sign({ id:findemail._id }, JWT_SECRET_KEY, { expiresIn: '1h' });
-            res.status(200).json({'message':'Login successful',token,userrole})
+            const token = jwt.sign({ id: findemail._id }, JWT_SECRET_KEY, { expiresIn: '1h' });
+            res.status(200).json({ 'message': 'Login successful', token, userrole })
         }
-          
+
     }
-    catch(e){
+    catch (e) {
         res.status(500).json('Login server error')
     }
 }
 
-export const GetIndividualUser=async(req,res)=>{
-        try{
-             const userID=req.UserID
+export const GetIndividualUser = async (req, res) => {
+    try {
+        const userID = req.UserID
 
-             const userdata=await usermodel.findById(userID)
-             if (!userdata) {
-                return res.status(404).json({ message: "User not found" });
-              }
-              
-              return res.status(200).json({ message: "User found", data:userdata });
+        const userdata = await usermodel.findById(userID)
+        if (!userdata) {
+            return res.status(404).json({ message: "User not found" });
         }
-        catch(e){
-            res.status(500).json({message:'Server error'})
-        }
+
+        return res.status(200).json({ message: "User found", data: userdata });
+    }
+    catch (e) {
+        res.status(500).json({ message: 'Server error' })
+    }
 }

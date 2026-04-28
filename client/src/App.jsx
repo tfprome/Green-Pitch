@@ -12,7 +12,7 @@ import NavbarMenu from './components/navbarmenu.jsx';
 import InvoicePage from './pages/invoicepage.jsx';
 import { ToastContainer } from 'react-toastify';
 import AdminPage from './pages/adminpage.jsx';
-import Products  from './components/Admin/products.jsx';
+import Products from './components/Admin/products.jsx';
 import Dashboard from './components/dashboard.jsx';
 
 
@@ -38,7 +38,7 @@ function App() {
             <Route path='/navbarmenu' element={<NavbarMenu />}></Route>
             <Route path='/invoicepage/:id' element={<InvoicePage />}></Route>
             <Route path='/admin/view' element={<Dashboard />}>
-                <Route path='products' element={<Products/>}></Route>
+              <Route path='products' element={<Products />}></Route>
             </Route>
           </Routes>
           <ToastContainer position='top-center' pauseOnHover={false} />

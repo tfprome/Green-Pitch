@@ -19,17 +19,18 @@ app.use('/',router)
 
 
 
-app.post('/products',upload.single('brandimg') ,async(req,res)=>{
-    const {brandname,branddesc,brandprice,brandstar,brandID,categoryID}=req.body
-    const brandimg=req.file? `/uploads/${req.file.filename}`:''
-    try{
-        const product=await products.create({brandname,branddesc,brandprice,brandstar,brandID,categoryID,brandimg})
-        console.log('product created',product)
-    }
-    catch(e){
-        console.error('slider failed',e)
-    }
-})
+// app.post('/admin/addproduct',upload.single('brandimg') ,async(req,res)=>{
+//     const {brandname,branddesc,brandprice,brandstar,brandID,categoryID}=req.body
+//     const brandimg=req.file? `/uploads/${req.file.filename}`:''
+//     try{
+//         const product=await products.create({brandname,branddesc,brandprice,brandstar,brandID,categoryID,brandimg})
+//         res.status(201).json(product)
+//     }
+//     catch(e){
+//         res.status(500).json({'message':'product creation failed',error:e.message})
+//         console.error('product creation failed',e)
+//     }
+// })
 
 // app.post('/brand',upload.single('brandimg'),async(req,res)=>{
 //        const {brandname}=req.body

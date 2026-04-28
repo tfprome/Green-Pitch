@@ -20,6 +20,7 @@ import {
 import React from "react";
 import { fetchProducts } from "@/helpers/ProductsApi";
 import { useEffect } from "react";
+import AddProductForm from "../AddProductForm";
 
 
 const Products = () => {
@@ -27,8 +28,8 @@ const Products = () => {
   const [products, setProducts] = React.useState([]);
   const [totalproducts, setTotalproducts] = React.useState(0);
   const limit = 10;
-  const [cursor, setCursor] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [showAddProductForm, setShowAddProductForm] = React.useState(false);
   const totalpages = Math.ceil(totalproducts / limit)
 
   //   useEffect(() => {
@@ -72,10 +73,24 @@ const Products = () => {
     setCurrentPage(currentPage - 1);
   }
 
+  const handleAddProductClick = () => {
+    setShowAddProductForm(true); // Show the Add Product form
+  };
+
   // console.log('products', products)
   // console.log('currentpage', currentPage)
   return (
     <div>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Products</h1>
+        <button
+          onClick={handleAddProductClick}
+          className="px-5 py-2 bg-gray-500 text-white font-semibold font-sans rounded-md cursor-pointer"
+        >
+          Add Product
+        </button>
+      </div>
+      
       <Table>
         {/* <TableCaption>Products</TableCaption> */}
         <TableHeader>
@@ -99,36 +114,36 @@ const Products = () => {
       </Table>
 
       <div className="text-2xl mt-2">
-      <Pagination className="flex justify-end">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              onClick={() => {
-                if (currentPage !== 1) prevPage();
-              }}
-              className={`cursor-pointer ${
-                currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-              }`} />
-          </PaginationItem>
-          {Array.from({ length: totalpages }, (_, index) => (
-            <PaginationItem key={index}>
-              <PaginationLink
-                isActive={currentPage === index + 1}
-                onClick={() => setCurrentPage(index + 1)}
-                className="cursor-pointer hover:bg-gray-200"
-              >
-                {index + 1}
-              </PaginationLink>
+        <Pagination className="flex justify-end">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                onClick={() => {
+                  if (currentPage !== 1) prevPage();
+                }}
+                className={`cursor-pointer ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+                  }`} />
             </PaginationItem>
-          ))}
-          <PaginationItem>
-            <PaginationNext 
-            onClick={()=>{if(currentPage!=totalpages) nextPage()}}
-            className={`cursor-pointer ${currentPage==totalpages? "cursor-not-allowed opacity-50":""}`} />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+            {Array.from({ length: totalpages }, (_, index) => (
+              <PaginationItem key={index}>
+                <PaginationLink
+                  isActive={currentPage === index + 1}
+                  onClick={() => setCurrentPage(index + 1)}
+                  className="cursor-pointer hover:bg-gray-200"
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                onClick={() => { if (currentPage != totalpages) nextPage() }}
+                className={`cursor-pointer ${currentPage == totalpages ? "cursor-not-allowed opacity-50" : ""}`} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
+      {showAddProductForm && <AddProductForm onClose={() => setShowAddProductForm(false)} />}
     </div>
 
   )
