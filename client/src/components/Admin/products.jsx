@@ -85,7 +85,7 @@ const Products = () => {
         <h1 className="text-2xl font-bold">Products</h1>
         <button
           onClick={handleAddProductClick}
-          className="px-5 py-2 bg-gray-500 text-white font-semibold font-sans rounded-md cursor-pointer"
+          className="px-5 py-2 bg-[#012641] text-white font-semibold font-sans rounded-md cursor-pointer"
         >
           Add Product
         </button>

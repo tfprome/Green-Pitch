@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs'
 import { toast } from "react-toastify";
+import { EyeIcon, EyeSlashIcon } from "@phosphor-icons/react";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -13,6 +14,8 @@ const Signup = () => {
         password: "",
         confirmPassword: "",
     });
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const Backendurl = import.meta.env.VITE_BACKEND_URL
 
@@ -51,7 +54,7 @@ const Signup = () => {
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="flex items-center justify-center min-h-screen bg-gray-200">
                 <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
@@ -89,35 +92,51 @@ const Signup = () => {
                         </div>
 
                         {/* Password */}
-                        <div>
+                        <div className="relative">
                             <label className="block text-sm font-medium text-gray-600">
                                 Password
                             </label>
+
                             <input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 name="password"
                                 value={form.password}
                                 onChange={handleChange}
                                 required
-                                className="mt-1 w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                                className="mt-1 w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none pr-10"
                                 placeholder="Enter your password"
                             />
+
+                            <div
+                                className="absolute right-3 top-9 cursor-pointer text-gray-500"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                            >
+                                {showPassword ? <EyeSlashIcon size={20} /> : <EyeIcon size={20} />}
+                            </div>
                         </div>
 
                         {/* Confirm Password */}
-                        <div>
+                        <div className="relative">
                             <label className="block text-sm font-medium text-gray-600">
                                 Confirm Password
                             </label>
+
                             <input
-                                type="password"
+                                type={showConfirmPassword ? "text" : "password"}
                                 name="confirmPassword"
                                 value={form.confirmPassword}
                                 onChange={handleChange}
                                 required
-                                className="mt-1 w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                                className="mt-1 w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none pr-10"
                                 placeholder="Confirm your password"
                             />
+
+                            <div
+                                className="absolute right-3 top-9 cursor-pointer text-gray-500"
+                                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                            >
+                                {showConfirmPassword ? <EyeSlashIcon size={20} /> : <EyeIcon size={20} />}
+                            </div>
                         </div>
 
                         {/* Submit */}
