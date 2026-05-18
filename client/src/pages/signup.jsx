@@ -16,6 +16,7 @@ const Signup = () => {
     });
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const Backendurl = import.meta.env.VITE_BACKEND_URL
 
@@ -25,13 +26,13 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true);
         if (form.password !== form.confirmPassword) {
             toast.warn("Passwords do not match!");
+            setLoading(false);
             return;
         }
-
-        console.log("Signup Data:", form);
+        //console.log("Signup Data:", form);
         try {
             const hashedpassword = await bcrypt.hash(form.password, 10)
             const { name, email } = form
@@ -46,9 +47,12 @@ const Signup = () => {
                 toast.warn("User with this email already exists", { autoClose: 1000 });
             } else {
                 // Handle other errors
-                console.log('Error while fetching signup response:', e);
+                //console.log('Error while fetching signup response:', e);
                 toast.error("An error occurred during signup", { autoClose: 1000 });
             }
+        }
+        finally {            
+            setLoading(false);
         }
     };
 
@@ -144,7 +148,7 @@ const Signup = () => {
                             type="submit"
                             className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-xl hover:bg-green-700 transition duration-200 cursor-pointer"
                         >
-                            Sign Up
+                            {loading? "Signing up..." : "Sign Up"}
                         </button>
                     </form>
 
