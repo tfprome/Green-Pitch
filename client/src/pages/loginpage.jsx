@@ -54,8 +54,8 @@ const Login = () => {
 
     <div className=''>
       {/* <Navbar /> */}
-      <div className="flex items-center justify-center min-h-screen bg-gray-200">
-        <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
+        <div className="w-full max-w-sm mt-6 bg-white rounded-2xl shadow-lg p-8">
           <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
@@ -115,6 +115,13 @@ const Login = () => {
             </a>
           </div>
         </div>
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="w-full mb-4 mt-2 bg-gray-200 cursor-pointer text-gray-700 font-semibold py-2 px-4"
+        >
+          ← Go Back
+        </button>
       </div>
     </div>
   );

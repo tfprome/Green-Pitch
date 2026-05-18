@@ -51,7 +51,7 @@ const Signup = () => {
                 toast.error("An error occurred during signup", { autoClose: 1000 });
             }
         }
-        finally {            
+        finally {
             setLoading(false);
         }
     };
@@ -59,7 +59,7 @@ const Signup = () => {
     return (
         <div>
             {/* <Navbar /> */}
-            <div className="flex items-center justify-center min-h-screen bg-gray-200">
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
                 <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -148,7 +148,7 @@ const Signup = () => {
                             type="submit"
                             className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-xl hover:bg-green-700 transition duration-200 cursor-pointer"
                         >
-                            {loading? "Signing up..." : "Sign Up"}
+                            {loading ? "Signing up..." : "Sign Up"}
                         </button>
                     </form>
 
@@ -159,7 +159,15 @@ const Signup = () => {
                             Login
                         </a>
                     </div>
+
                 </div>
+                <button
+                    type="button"
+                    onClick={() => navigate(-1)}
+                    className="w-full mb-4 mt-2 bg-gray-200 cursor-pointer text-gray-700 font-semibold py-2 px-4"
+                >
+                    ← Go Back
+                </button>
             </div>
         </div>
     );
