@@ -59,25 +59,25 @@ const Dashboard = () => {
       value: '₹1,24,563',
       change: '+12.5%',
       icon: CurrencyDollarIcon,
-      color: 'from-emerald-500 to-teal-600',
-      bgColor: 'bg-emerald-50',
-      iconColor: 'text-emerald-600'
+      color: 'bg-[#06D6A0]',
+      bgColor: 'bg-[#CFD78C]',
+      iconColor: 'text-[#FFFCD1]'
     },
     {
       title: 'Total Revenue',
       value: '₹2,45,890',
       change: '+8.2%',
       icon: ChartBarIcon,
-      color: 'from-blue-500 to-indigo-600',
-      bgColor: 'bg-blue-50',
-      iconColor: 'text-blue-600'
+      color: 'bg-[#A4D8FF]',
+      bgColor: 'bg-[#35393C]',
+      iconColor: 'bg-[#35393C]'
     },
     {
       title: 'No. of Products',
       value: totalproducts,
       change: '+23 this month',
       icon: ShoppingBagIcon,
-      color: 'bg-[#e83c10]',
+      color: 'bg-[#F4C9D6]',
       bgColor: 'bg-purple-50',
       iconColor: 'text-black'
     }
@@ -158,11 +158,11 @@ const Dashboard = () => {
                 <div className={`bg-gradient-to-br ${stat.color} rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all`}>
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-white/80 text-sm font-medium mb-1">{stat.title}</p>
-                      <p className="text-3xl font-bold mb-2">{stat.value}</p>
-                      <p className="text-white/90 text-xs font-medium">{stat.change}</p>
+                      <p className="text-[#39353C] text-sm font-medium mb-1">{stat.title}</p>
+                      <p className="text-3xl text-[#39353C] font-bold mb-2">{stat.value}</p>
+                      <p className="text-[#39353C] text-xs font-medium">{stat.change}</p>
                     </div>
-                    <div className="bg-white/20 rounded-xl p-3">
+                    <div className="bg-white/20 text-[#39353C] rounded-xl p-3">
                       <IconComponent size={28} weight="duotone" />
                     </div>
                   </div>
