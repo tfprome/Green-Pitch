@@ -25,7 +25,7 @@ router.get('/categoryname', homecontroller.categoryname)
 router.post('/signup', usercontrollers.signupservice)
 router.post('/login', usercontrollers.loginservice)
 
-router.get('/getproducts', authmiddleware, productcontrollers.getproducts)
+router.get('/getproducts', productcontrollers.getproducts)
 router.get('/productdetails/:id', productcontrollers.detailsService)
 router.get('/listbycategory/:id', productcontrollers.listbycategoryservice)
 router.get('/listbybrand/:id', productcontrollers.listbybrandservice)
@@ -48,7 +48,8 @@ router.get("/payment-fail/:id", invoicecontrollers.paymentFail);
 
 router.get('/user', authmiddleware, usercontrollers.GetIndividualUser)
 
-router.post('/admin/addproduct',authmiddleware,upload.single('brandimg'),productcontrollers.addproduct)
+router.post('/admin/addproduct', authmiddleware, upload.single('brandimg'), productcontrollers.addproduct)
+router.get('/getproductsforadmin', authmiddleware, productcontrollers.getproducts)
 
 
 export default router;
