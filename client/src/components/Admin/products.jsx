@@ -18,7 +18,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import React from "react";
-import { fetchProducts } from "@/helpers/ProductsApi";
+import { fetchProductsforadmin } from "@/helpers/ProductsApi";
 import { useEffect } from "react";
 import AddProductForm from "../AddProductForm";
 
@@ -50,7 +50,7 @@ const Products = () => {
     const Products = async () => {
       try {
         const skip = (currentPage - 1) * limit;
-        const productsdata = await fetchProducts(skip, limit);
+        const productsdata = await fetchProductsforadmin(skip, limit);
         console.log(productsdata)
 
         setProducts(productsdata.data)
