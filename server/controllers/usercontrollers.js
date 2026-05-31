@@ -41,7 +41,7 @@ export const loginservice = async (req, res) => {
             res.status(401).json('wrong pass')
         else {
             //console.log('findemail',userrole)
-            const token = jwt.sign({ id: findemail._id }, JWT_SECRET_KEY, { expiresIn: '1h' });
+            const token = jwt.sign({ id: findemail._id }, JWT_SECRET_KEY, { expiresIn: '24h' });
             res.status(200).json({ 'message': 'Login successful', token, userrole })
         }
 
