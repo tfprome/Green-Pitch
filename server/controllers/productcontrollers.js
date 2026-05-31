@@ -150,12 +150,12 @@ export const productlistbykeyword = async (req, res) => {
 
 export const getproducts = async (req, res) => {
     try {
-        const limit = parseInt(req.query.limit) || 10;
-        const skip = parseInt(req.query.skip) || 0;
+        // const limit = parseInt(req.query.limit) || 10;
+        // const skip = parseInt(req.query.skip) || 0;
 
         const totalProducts = await products.countDocuments();
 
-        const data = await products.find().skip(skip).limit(limit);
+        const data = await products.find();
 
         return res.status(200).json({ 'total': totalProducts, data })
     }
@@ -193,3 +193,19 @@ export const addproduct = async (req, res) => {
         console.log(e)
     }
 };
+
+export const getproductsforadmin = async (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = parseInt(req.query.skip) || 0;
+
+        const totalProducts = await products.countDocuments();
+
+        const data = await products.find().skip(skip).limit(limit);
+
+        return res.status(200).json({ 'total': totalProducts, data })
+    }
+    catch (e) {
+        return res.status(500).json('server error in get products')
+    }
+}

@@ -49,7 +49,7 @@ router.get("/payment-fail/:id", invoicecontrollers.paymentFail);
 router.get('/user', authmiddleware, usercontrollers.GetIndividualUser)
 
 router.post('/admin/addproduct', authmiddleware, upload.single('brandimg'), productcontrollers.addproduct)
-router.get('/getproductsforadmin', authmiddleware, productcontrollers.getproducts)
+router.get('/getproductsforadmin', authmiddleware, productcontrollers.getproductsforadmin)
 
 
 export default router;
