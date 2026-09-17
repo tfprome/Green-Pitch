@@ -1,0 +1,42 @@
+services:
+
+  frontend:
+    build:
+      context: ./client
+    container_name: green-pitch-frontend
+    ports:
+      - "5173:5000"
+    depends_on:
+      - backend
+    networks:
+      - green-pitch-network
+
+  backend:
+    build:
+      context: ./server
+    container_name: green-pitch-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env
+    depends_on:
+      - mongodb
+    networks:
+      - green-pitch-network
+
+  mongodb:
+    image: mongo:8
+    container_name: green-pitch-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - green-pitch-mongo-data:/data/db
+    networks:
+      - green-pitch-network
+
+networks:
+  green-pitch-network:
+    driver: bridge
+
+volumes:
+  green-pitch-mongo-data:
