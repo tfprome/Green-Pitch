@@ -2,7 +2,9 @@
 
 A MERN-stack e-commerce application (React frontend, Express API, MongoDB) packaged with Docker Compose and wired to a full observability stack: **metrics** with Prometheus, **logs** with Grafana Alloy and Loki, **dashboards and email alerts** with Grafana.
 
-Live demo of the app: <https://green-pitch.vercel.app>
+Live demo of the app: <https://green-pitch.netlify.app/>
+
+It may take some time since render takes a bit of time to start
 
 ---
 
