@@ -64,7 +64,7 @@ const BrandShow = (props) => {
                    }
                  }
                }} style={{overflowX:'hidden'}}>
-                 {branddata.map((item,index)=>(
+                 {branddata && branddata.map((item,index)=>(
                  <Link to={`/productlistbybrand/${item._id}`}>
                         <motion.div key={item._id} className='shadow-md rounded-md  m-5 w-40 h-40 flex flex-col items-center cursor-pointer transition-transform ease-in-out
                             duration-300 hover:shadow-xl hover:scale-110  hover:bg-gray-300'
