@@ -317,7 +317,3 @@ This setup is intended for **local development**. Before exposing it anywhere:
 | Images return 404 | `./server/uploads` must exist on the host and contain the files; it is bind-mounted to `/app/uploads`. |
 
 ---
-
-## License
-
-Add a license of your choice.
